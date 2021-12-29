@@ -1,0 +1,42 @@
+{
+  "groups": [
+    {
+      "name": "swagger",
+      "type": "com.bus.server.config.SwaggerProperties",
+      "sourceType": "com.bus.server.config.SwaggerProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "swagger.author",
+      "type": "java.lang.String",
+      "description": "作者",
+      "sourceType": "com.bus.server.config.SwaggerProperties"
+    },
+    {
+      "name": "swagger.base-package",
+      "type": "java.lang.String",
+      "description": "扫描的包",
+      "sourceType": "com.bus.server.config.SwaggerProperties"
+    },
+    {
+      "name": "swagger.description",
+      "type": "java.lang.String",
+      "description": "描述",
+      "sourceType": "com.bus.server.config.SwaggerProperties"
+    },
+    {
+      "name": "swagger.title",
+      "type": "java.lang.String",
+      "description": "标题",
+      "sourceType": "com.bus.server.config.SwaggerProperties"
+    },
+    {
+      "name": "swagger.version",
+      "type": "java.lang.String",
+      "description": "版本",
+      "sourceType": "com.bus.server.config.SwaggerProperties"
+    }
+  ],
+  "hints": []
+}

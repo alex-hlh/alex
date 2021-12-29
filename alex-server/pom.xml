@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.bus</groupId>
+  <artifactId>alex-server</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <name>alex-server</name>
+  <parent>
+    <groupId>com.bus</groupId>
+    <artifactId>alex</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <properties>
+
+    <knife4j.version>3.0.2</knife4j.version>
+    <swagger-annotations.version>1.5.22</swagger-annotations.version>
+<!--    <springdoc.version>1.6.2</springdoc.version>-->
+    <servlet.versoin>2.5</servlet.versoin>
+    <!-- DB 相关 -->
+    <mysql.version>8.0.27</mysql.version>
+    <druid.version>1.2.4</druid.version>
+    <mybatis-plus.version>3.4.2</mybatis-plus.version>
+    <dynamic-datasource.version>3.3.2</dynamic-datasource.version>
+    <redisson.version>3.16.3</redisson.version>
+    <!-- 工具类相关 -->
+    <lombok.version>1.18.20</lombok.version>
+    <mapstruct.version>1.4.1.Final</mapstruct.version>
+    <hutool.version>5.6.1</hutool.version>
+    <easyexcel.verion>2.2.7</easyexcel.verion>
+    <velocity.version>2.2</velocity.version>
+    <screw.version>1.0.5</screw.version>
+    <guava.version>30.1.1-jre</guava.version>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+   <!--security 依赖-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+      <version>2.5.8</version>
+    </dependency>
+    <!--JWT 依赖-->
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt</artifactId>
+      <version>0.9.0</version>
+    </dependency>
+
+    <!-- google kaptcha依赖 -->
+    <dependency>
+      <groupId>com.github.axet</groupId>
+      <artifactId>kaptcha</artifactId>
+      <version>0.0.9</version>
+    </dependency>
+    <!-- knife4j依赖 -->
+    <dependency>
+       <groupId>com.github.xiaoymin</groupId>
+       <artifactId>knife4j-spring-boot-starter</artifactId>
+       <version>${knife4j.version}</version>
+       <exclusions>
+         <exclusion>
+           <artifactId>mapstruct</artifactId>
+           <groupId>org.mapstruct</groupId>
+         </exclusion>
+         <exclusion>
+           <artifactId>guava</artifactId>
+           <groupId>com.google.guava</groupId>
+         </exclusion>
+         <exclusion>
+           <artifactId>swagger-annotations</artifactId>
+           <groupId>io.swagger</groupId>
+         </exclusion>
+       </exclusions>
+     </dependency>
+     <dependency>
+       <groupId>io.swagger</groupId>
+       <artifactId>swagger-annotations</artifactId>
+       <version>${swagger-annotations.version}</version>
+     </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <!-- DB 相关 -->
+
+    <!-- DB 相关 多数据源 -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid-spring-boot-starter</artifactId>
+      <version>${druid.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.baomidou</groupId>
+      <artifactId>mybatis-plus-boot-starter</artifactId>
+      <version>${mybatis-plus.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.baomidou</groupId>
+      <artifactId>dynamic-datasource-spring-boot-starter</artifactId> <!-- 多数据源 -->
+      <version>${dynamic-datasource.version}</version>
+    </dependency>
+    <!-- DB redis
+    <dependency>
+      <groupId>org.redisson</groupId>
+      <artifactId>redisson-spring-boot-starter</artifactId>
+      <version>${redisson.version}</version>
+    </dependency>-->
+    <!-- spring data redis 依赖 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
+    <!-- commons-pool2 对象池依赖 -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-pool2</artifactId>
+    </dependency>
+    <!-- 解决 redis 序列化 java8 LocalDateTime 问题 -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+    </dependency>
+    <!-- lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+    </dependency>
+    <!-- hutool工具包 -->
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-all</artifactId>
+      <version>${hutool.version}</version>
+    </dependency>
+    <!-- office导入导出 -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>easyexcel</artifactId>
+      <version>${easyexcel.verion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.velocity</groupId>
+      <artifactId>velocity-engine-core</artifactId>
+      <version>${velocity.version}</version>
+    </dependency>
+    <!--数据库表结构文档生成工具-->
+    <dependency>
+      <groupId>cn.smallbun.screw</groupId>
+      <artifactId>screw-core</artifactId>
+      <version>${screw.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+    </dependency>
+    <!--Java 实体映射工具-->
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${mapstruct.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct-jdk8</artifactId>
+      <version>${mapstruct.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct-processor</artifactId>
+      <version>${mapstruct.version}</version>
+    </dependency>
+
+  </dependencies>
+
+
+</project>
