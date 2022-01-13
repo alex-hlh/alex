@@ -1,5 +1,6 @@
 package com.bus.server.config;
 
+import com.bus.server.common.secuity.JwtAuthencationTokenFilter;
 import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -31,7 +32,7 @@ public class SwaggerConfig {
     /**
      * API 摘要信息
      */
-    private static ApiInfo apiInfo(SwaggerProperties properties) {
+    private static ApiInfo apiInfo(JwtAuthencationTokenFilter.SwaggerProperties properties) {
         return new ApiInfoBuilder()
                 .title(properties.getTitle())
                 .description(properties.getDescription())
@@ -70,13 +71,13 @@ public class SwaggerConfig {
 
     @Bean
     @ConditionalOnMissingBean
-    public SwaggerProperties swaggerProperties() {
-        return new SwaggerProperties();
+    public JwtAuthencationTokenFilter.SwaggerProperties swaggerProperties() {
+        return new JwtAuthencationTokenFilter.SwaggerProperties();
     }
 
     @Bean
     public Docket createRestApi() {
-        SwaggerProperties properties = swaggerProperties();
+        JwtAuthencationTokenFilter.SwaggerProperties properties = swaggerProperties();
         // 创建 Docket 对象
         return new Docket(DocumentationType.SWAGGER_2)
                 // 用来创建该 API 的基本信息，展示在文档的页面中（自定义展示的信息）

@@ -3,13 +3,14 @@ package com.bus.server.service.impl;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.bus.server.config.JwtTokenUtil;
+import com.bus.server.common.constans.Constants;
+import com.bus.server.common.utils.JwtTokenUtil;
+import com.bus.server.common.utils.RedisUtil;
 import com.bus.server.mapper.SysUserMapper;
-import com.bus.server.pojo.RespBean;
+import com.bus.server.pojo.CommonResult;
 import com.bus.server.pojo.SysUser;
 import com.bus.server.pojo.UserLoginParam;
 import com.bus.server.service.ISysUserService;
-import org.apache.velocity.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -44,7 +45,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     private PasswordEncoder passwordEncoder;
     @Value("${jwt.tokenHead}")
     private String tokenHead;
-
+    @Autowired
+    private RedisUtil redisUtil;
     /**
      * 登录之后返回token
      *
@@ -53,18 +55,18 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return
      */
     @Override
-    public RespBean login(UserLoginParam param, HttpServletRequest request) {
-        String captcha = (String) request.getSession().getAttribute("captcha");
+    public CommonResult login(UserLoginParam param, HttpServletRequest request) {
+        String captcha = redisUtil.getCacheObject(Constants.CAPTCHA_CODE_KEY+param.getUuid());
         if(StrUtil.isEmpty(param.getCode()) && !captcha.equalsIgnoreCase(param.getCode())){
-            return RespBean.error("验证码不正确！");
+            return CommonResult.error("验证码不正确！");
         }
         //登录
         UserDetails userDetails = userDetailsService.loadUserByUsername(param.getUsername());
         if (null == userDetails || !passwordEncoder.matches(param.getPassword(), userDetails.getPassword())) {
-            return RespBean.error("用户名或密码不正确！");
+            return CommonResult.error("用户名或密码不正确！");
         }
         if (!userDetails.isEnabled()) {
-            return RespBean.error("帐号已停用，请联系管理员！");
+            return CommonResult.error("帐号已停用，请联系管理员！");
         }
         //更新security登录用户对象
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
@@ -75,7 +77,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         Map<String, Object> tokenMap = new HashMap<>();
         tokenMap.put("token", token);
         tokenMap.put("tokenHead", tokenHead);
-        return RespBean.success("登录成功！", tokenMap);
+        return CommonResult.success("登录成功！", tokenMap);
     }
 
     /**

@@ -1,3 +1,18 @@
+system:
+  # 名称
+  name: Alex
+  # 版本
+  version: 1.8.0
+  # 版权年份
+  copyrightYear: 2021
+  # 文件路径 示例（ Windows配置D:/alex/uploadPath，Linux配置 /home/alex/uploadPath）
+  profile: D:/alex/uploadPath
+  # 获取ip地址开关
+  addressEnabled: false
+  # 验证码类型 math 数组计算 char 字符验证
+  captchaType: math
+
+
 server:
   port: 8081
 

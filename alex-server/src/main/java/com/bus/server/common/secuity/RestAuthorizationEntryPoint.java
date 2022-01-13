@@ -1,6 +1,6 @@
-package com.bus.server.config;
+package com.bus.server.common.secuity;
 
-import com.bus.server.pojo.RespBean;
+import com.bus.server.pojo.CommonResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -25,7 +25,7 @@ public class RestAuthorizationEntryPoint implements AuthenticationEntryPoint {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        RespBean bean = RespBean.error("尚未登录，请登录！", e.getMessage());
+        CommonResult bean = CommonResult.error("尚未登录，请登录！", e.getMessage());
         bean.setCode(401);
         out.write(new ObjectMapper().writeValueAsString(bean));
         out.flush();

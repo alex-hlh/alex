@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RespBean {
+public class CommonResult {
     private long code;
     private String message;
-    private Object obj;
+    private Object data;
 
     /**
      * 成功返回
@@ -24,8 +24,8 @@ public class RespBean {
      * @param message
      * @return
      */
-    public static RespBean success(String message) {
-        return new RespBean(200, message, null);
+    public static CommonResult success(String message) {
+        return new CommonResult(200, message, null);
     }
 
 
@@ -36,8 +36,8 @@ public class RespBean {
      * @param obj
      * @return
      */
-    public static RespBean success(String message, Object obj) {
-        return new RespBean(200, message, obj);
+    public static CommonResult success(String message, Object obj) {
+        return new CommonResult(200, message, obj);
     }
 
     /**
@@ -46,8 +46,8 @@ public class RespBean {
      * @param message
      * @return
      */
-    public static RespBean error(String message) {
-        return new RespBean(500, message, null);
+    public static CommonResult error(String message) {
+        return new CommonResult(500, message, null);
     }
 
     /**
@@ -56,7 +56,8 @@ public class RespBean {
      * @param message
      * @return
      */
-    public static RespBean error(String message, Object obj) {
-        return new RespBean(500, message, obj);
+    public static CommonResult error(String message, Object obj) {
+        return new CommonResult(500, message, obj);
     }
+
 }

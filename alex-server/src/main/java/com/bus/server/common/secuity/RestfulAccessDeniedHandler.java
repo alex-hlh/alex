@@ -1,6 +1,6 @@
-package com.bus.server.config;
+package com.bus.server.common.secuity;
 
-import com.bus.server.pojo.RespBean;
+import com.bus.server.pojo.CommonResult;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -25,7 +25,7 @@ public class RestfulAccessDeniedHandler implements AccessDeniedHandler {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        RespBean bean = RespBean.error("权限不足，请联系管理与", e.getMessage());
+        CommonResult bean = CommonResult.error("权限不足，请联系管理与", e.getMessage());
         bean.setCode(403);
         out.write(new ObjectMapper().writeValueAsString(bean));
         out.flush();

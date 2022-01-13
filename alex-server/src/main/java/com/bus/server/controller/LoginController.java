@@ -1,6 +1,6 @@
 package com.bus.server.controller;
 
-import com.bus.server.pojo.RespBean;
+import com.bus.server.pojo.CommonResult;
 import com.bus.server.pojo.SysUser;
 import com.bus.server.pojo.UserLoginParam;
 import com.bus.server.service.ISysUserService;
@@ -29,7 +29,7 @@ public class LoginController {
 
     @ApiOperation(value = "登录之后返回token")
     @PostMapping("/login")
-    public RespBean login(@RequestBody UserLoginParam param, HttpServletRequest request) {
+    public CommonResult login(@RequestBody UserLoginParam param, HttpServletRequest request) {
         return iSysUserService.login(param, request);
     }
 
@@ -47,8 +47,8 @@ public class LoginController {
 
     @ApiOperation(value = "退出登录！")
     @PostMapping("/logout")
-    public RespBean logout() {
-        return RespBean.success("退出成功！");
+    public CommonResult logout() {
+        return CommonResult.success("退出成功！");
     }
 
 }

@@ -1,7 +1,7 @@
 package com.bus.server.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.bus.server.pojo.RespBean;
+import com.bus.server.pojo.CommonResult;
 import com.bus.server.pojo.SysUser;
 import com.bus.server.pojo.UserLoginParam;
 
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface ISysUserService extends IService<SysUser> {
 
-    RespBean login(UserLoginParam param, HttpServletRequest request);
+    CommonResult login(UserLoginParam param, HttpServletRequest request);
 
     SysUser getUserByName(String userName);
 

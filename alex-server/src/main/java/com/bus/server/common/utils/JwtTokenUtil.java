@@ -1,4 +1,4 @@
-package com.bus.server.config;
+package com.bus.server.common.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,7 +1,10 @@
-package com.bus.server.config;
+package com.bus.server.common.secuity;
 
+import com.bus.server.common.utils.JwtTokenUtil;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +16,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.NotEmpty;
 import java.io.IOException;
 
 
@@ -54,5 +58,42 @@ public class JwtAuthencationTokenFilter extends OncePerRequestFilter {
             }
         }
         filterChain.doFilter(request, response);
+    }
+
+    /**
+     * Swagger 配置属性
+     *
+     * @author
+     */
+    @ConfigurationProperties(prefix = "swagger")
+    @Data
+    public static class SwaggerProperties {
+
+        /**
+         * 标题
+         */
+        @NotEmpty(message = "标题不能为空")
+        private String title;
+        /**
+         * 描述
+         */
+        @NotEmpty(message = "描述不能为空")
+        private String description;
+        /**
+         * 作者
+         */
+        @NotEmpty(message = "作者不能为空")
+        private String author;
+        /**
+         * 版本
+         */
+        @NotEmpty(message = "版本不能为空")
+        private String version;
+        /**
+         * 扫描的包
+         */
+        @NotEmpty(message = "扫描的 package 不能为空")
+        private String basePackage;
+
     }
 }
