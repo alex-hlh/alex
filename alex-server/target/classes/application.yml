@@ -26,9 +26,9 @@ spring:
       # 测试连接是否可用的查询测试语句
       connection-test-query: SELECT 1
 
-#  mvc:
-#    pathmatch:
-#      matching-strategy: ANT_PATH_MATCHER
+  #  mvc:
+  #    pathmatch:
+  #      matching-strategy: ANT_PATH_MATCHER
   redis:
     #超时时间
     timeout: 10000ms

@@ -29,7 +29,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_operate_log")
-@ApiModel(value="SysOperateLog对象", description="操作日志记录")
+@ApiModel(value = "SysOperateLog对象", description = "操作日志记录")
 public class SysOperateLog implements Serializable {
 
     private static final long serialVersionUID = 1L;

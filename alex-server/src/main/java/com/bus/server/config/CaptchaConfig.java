@@ -14,9 +14,9 @@ import java.util.Properties;
 @Configuration
 public class CaptchaConfig {
     @Bean
-    public DefaultKaptcha defaultKaptcha(){
+    public DefaultKaptcha defaultKaptcha() {
         //验证码生成器
-        DefaultKaptcha defaultKaptcha=new DefaultKaptcha();
+        DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
         //配置
         Properties properties = new Properties();
         //是否有边框
@@ -26,7 +26,7 @@ public class CaptchaConfig {
         //边框粗细度，默认为1
         // properties.setProperty("kaptcha.border.thickness","1");
         //验证码
-        properties.setProperty("kaptcha.session.key","code");
+        properties.setProperty("kaptcha.session.key", "code");
         //验证码文本字符颜色 默认为黑色
         properties.setProperty("kaptcha.textproducer.font.color", "blue");
         //设置字体样式

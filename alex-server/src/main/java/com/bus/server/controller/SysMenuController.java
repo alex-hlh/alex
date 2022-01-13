@@ -28,7 +28,7 @@ public class SysMenuController {
 
     @ApiOperation("通过userid获取菜单menu")
     @GetMapping("/getMenus")
-    public List<SysMenu> getMenusById(){
+    public List<SysMenu> getMenusById() {
         return iSysMenuService.getMenusById();
     }
 

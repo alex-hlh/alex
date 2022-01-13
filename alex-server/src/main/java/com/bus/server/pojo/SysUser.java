@@ -32,7 +32,7 @@ import java.util.Collection;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_user")
-@ApiModel(value="SysUser对象", description="用户信息表")
+@ApiModel(value = "SysUser对象", description = "用户信息表")
 public class SysUser implements Serializable, UserDetails {
 
     private static final long serialVersionUID = 1L;
@@ -130,6 +130,6 @@ public class SysUser implements Serializable, UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return status==0;
+        return status == 0;
     }
 }

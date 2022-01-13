@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_dict_type")
-@ApiModel(value="SysDictType对象", description="字典类型表")
+@ApiModel(value = "SysDictType对象", description = "字典类型表")
 public class SysDictType implements Serializable {
 
     private static final long serialVersionUID = 1L;

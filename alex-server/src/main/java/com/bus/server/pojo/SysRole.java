@@ -29,7 +29,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_role")
-@ApiModel(value="SysRole对象", description="角色信息表")
+@ApiModel(value = "SysRole对象", description = "角色信息表")
 public class SysRole implements Serializable {
 
     private static final long serialVersionUID = 1L;

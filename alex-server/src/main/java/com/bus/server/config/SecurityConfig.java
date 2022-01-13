@@ -5,7 +5,6 @@ import com.bus.server.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -36,10 +35,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     @Bean
-    public UserDetailsService userDetailsService(){
-        return ussername ->{
+    public UserDetailsService userDetailsService() {
+        return ussername -> {
             SysUser sysUser = iSysUserService.getUserByName(ussername);
-            if(null != sysUser){
+            if (null != sysUser) {
                 return sysUser;
             }
             return null;
@@ -103,7 +102,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public JwtAuthencationTokenFilter jwtAuthencationTokenFilter(){
+    public JwtAuthencationTokenFilter jwtAuthencationTokenFilter() {
         return new JwtAuthencationTokenFilter();
     }
 }

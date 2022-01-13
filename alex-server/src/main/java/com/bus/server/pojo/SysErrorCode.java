@@ -29,7 +29,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_error_code")
-@ApiModel(value="SysErrorCode对象", description="错误码表")
+@ApiModel(value = "SysErrorCode对象", description = "错误码表")
 public class SysErrorCode implements Serializable {
 
     private static final long serialVersionUID = 1L;

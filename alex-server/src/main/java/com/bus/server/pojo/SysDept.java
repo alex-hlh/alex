@@ -29,7 +29,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_dept")
-@ApiModel(value="SysDept对象", description="部门表")
+@ApiModel(value = "SysDept对象", description = "部门表")
 public class SysDept implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -3,6 +3,7 @@ package com.bus.server.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.bus.server.pojo.RespBean;
 import com.bus.server.pojo.SysUser;
+import com.bus.server.pojo.UserLoginParam;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,10 +17,10 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface ISysUserService extends IService<SysUser> {
 
-    RespBean login(String username, String password, HttpServletRequest request);
+    RespBean login(UserLoginParam param, HttpServletRequest request);
 
     SysUser getUserByName(String userName);
 
-    int updateUserPassword(String oldPassword,String newPassword,Integer userId);
+    int updateUserPassword(String oldPassword, String newPassword, Integer userId);
 
 }

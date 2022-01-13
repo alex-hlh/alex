@@ -16,12 +16,14 @@ import java.util.List;
 public interface ISysMenuService extends IService<SysMenu> {
     /**
      * 根据id获取菜单列表
+     *
      * @return
      */
     List<SysMenu> getMenusById();
 
     /**
      * 根据角色获取菜单列表
+     *
      * @return
      */
     List<SysMenu> getMenusByRole();

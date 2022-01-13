@@ -1,12 +1,15 @@
 package com.bus.server.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.bus.server.config.JwtTokenUtil;
 import com.bus.server.mapper.SysUserMapper;
 import com.bus.server.pojo.RespBean;
 import com.bus.server.pojo.SysUser;
+import com.bus.server.pojo.UserLoginParam;
 import com.bus.server.service.ISysUserService;
+import org.apache.velocity.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -45,16 +48,19 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     /**
      * 登录之后返回token
      *
-     * @param username
-     * @param password
+     * @param param
      * @param request
      * @return
      */
     @Override
-    public RespBean login(String username, String password, HttpServletRequest request) {
+    public RespBean login(UserLoginParam param, HttpServletRequest request) {
+        String captcha = (String) request.getSession().getAttribute("captcha");
+        if(StrUtil.isEmpty(param.getCode()) && !captcha.equalsIgnoreCase(param.getCode())){
+            return RespBean.error("验证码不正确！");
+        }
         //登录
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        if (null == userDetails || !passwordEncoder.matches(password, userDetails.getPassword())) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(param.getUsername());
+        if (null == userDetails || !passwordEncoder.matches(param.getPassword(), userDetails.getPassword())) {
             return RespBean.error("用户名或密码不正确！");
         }
         if (!userDetails.isEnabled()) {

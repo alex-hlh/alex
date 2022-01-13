@@ -25,8 +25,8 @@ public class CaptchaController {
     private DefaultKaptcha defaultKaptcha;
 
     @ApiOperation(value = "验证码")
-    @GetMapping(value = "/captcha",produces = MediaType.IMAGE_JPEG_VALUE)
-    public void captcha(HttpServletRequest request, HttpServletResponse response){
+    @GetMapping(value = "/captcha", produces = MediaType.IMAGE_JPEG_VALUE)
+    public void captcha(HttpServletRequest request, HttpServletResponse response) {
         // 定义response输出类型为image/jpeg类型
         response.setDateHeader("Expires", 0);
         // Set standard HTTP/1.1 no-cache headers.
@@ -40,21 +40,21 @@ public class CaptchaController {
         //-------------------生成验证码 begin --------------------------
         //获取验证码文本内容
         String text = defaultKaptcha.createText();
-        System.out.println("验证码内容："+text);
+        System.out.println("验证码内容：" + text);
         //将验证码文本内容放入session
-        request.getSession().setAttribute("captcha",text);
+        request.getSession().setAttribute("captcha", text);
         //根据文本验证码内容创建图形验证码
         BufferedImage image = defaultKaptcha.createImage(text);
         ServletOutputStream outputStream = null;
         try {
             outputStream = response.getOutputStream();
             //输出流输出图片，格式为jpg
-            ImageIO.write(image,"jpg",outputStream);
+            ImageIO.write(image, "jpg", outputStream);
             outputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if (null!=outputStream){
+        } finally {
+            if (null != outputStream) {
                 try {
                     outputStream.close();
                 } catch (IOException e) {

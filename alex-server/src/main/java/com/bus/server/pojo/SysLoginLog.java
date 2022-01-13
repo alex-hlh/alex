@@ -29,7 +29,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_login_log")
-@ApiModel(value="SysLoginLog对象", description="系统访问记录")
+@ApiModel(value = "SysLoginLog对象", description = "系统访问记录")
 public class SysLoginLog implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -16,6 +16,7 @@ import java.util.List;
 public interface SysMenuMapper extends BaseMapper<SysMenu> {
     /**
      * 根据id查询菜单
+     *
      * @param id
      * @return
      */
@@ -23,6 +24,7 @@ public interface SysMenuMapper extends BaseMapper<SysMenu> {
 
     /**
      * 根据角色获取菜单列表
+     *
      * @return
      */
     List<SysMenu> getMenusByRole();

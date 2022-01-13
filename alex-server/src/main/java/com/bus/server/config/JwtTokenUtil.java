@@ -1,6 +1,8 @@
 package com.bus.server.config;
 
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -150,6 +152,6 @@ public class JwtTokenUtil {
      * @return
      */
     private Date generateExpirationDate() {
-        return new Date(System.currentTimeMillis() + expiration*1000);
+        return new Date(System.currentTimeMillis() + expiration * 1000);
     }
 }

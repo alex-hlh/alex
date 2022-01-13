@@ -12,7 +12,6 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,24 +32,26 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
 
     /**
      * 根据id获取菜单列表
+     *
      * @return
      */
     @Override
     public List<SysMenu> getMenusById() {
         Long id = ((SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-        ValueOperations<String,Object> valueOperations = redisTemplate.opsForValue();
+        ValueOperations<String, Object> valueOperations = redisTemplate.opsForValue();
         //从redis中获取菜单
-        List<SysMenu> menus = (List<SysMenu>)valueOperations.get("MENU_"+id);
-        if(CollectionUtil.isEmpty(menus)){
-           menus = sysMenuMapper.getMenusById(id);
-           //首次查询放入redis
-            valueOperations.set("MENU_"+id,menus);
+        List<SysMenu> menus = (List<SysMenu>) valueOperations.get("MENU_" + id);
+        if (CollectionUtil.isEmpty(menus)) {
+            menus = sysMenuMapper.getMenusById(id);
+            //首次查询放入redis
+            valueOperations.set("MENU_" + id, menus);
         }
         return menus;
     }
 
     /**
      * 根据角色获取菜单列表
+     *
      * @return
      */
     @Override

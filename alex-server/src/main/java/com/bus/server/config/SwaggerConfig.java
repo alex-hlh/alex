@@ -28,28 +28,6 @@ import static springfox.documentation.builders.RequestHandlerSelectors.basePacka
 @EnableSwagger2
 @EnableKnife4j
 public class SwaggerConfig {
-    @Bean
-    @ConditionalOnMissingBean
-    public SwaggerProperties swaggerProperties() {
-        return new SwaggerProperties();
-    }
-
-    @Bean
-    public Docket createRestApi() {
-        SwaggerProperties properties = swaggerProperties();
-        // 创建 Docket 对象
-        return new Docket(DocumentationType.SWAGGER_2)
-                // 用来创建该 API 的基本信息，展示在文档的页面中（自定义展示的信息）
-                .apiInfo(apiInfo(properties))
-                // 设置扫描指定 package 包下的
-                .select()
-                .apis(basePackage(properties.getBasePackage()))
-                .paths(PathSelectors.any())
-                .build()
-                .securitySchemes(securitySchemes())
-                .securityContexts(securityContexts());
-    }
-
     /**
      * API 摘要信息
      */
@@ -88,6 +66,28 @@ public class SwaggerConfig {
 
     private static AuthorizationScope[] authorizationScopes() {
         return new AuthorizationScope[]{new AuthorizationScope("global", "accessEverything")};
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public SwaggerProperties swaggerProperties() {
+        return new SwaggerProperties();
+    }
+
+    @Bean
+    public Docket createRestApi() {
+        SwaggerProperties properties = swaggerProperties();
+        // 创建 Docket 对象
+        return new Docket(DocumentationType.SWAGGER_2)
+                // 用来创建该 API 的基本信息，展示在文档的页面中（自定义展示的信息）
+                .apiInfo(apiInfo(properties))
+                // 设置扫描指定 package 包下的
+                .select()
+                .apis(basePackage(properties.getBasePackage()))
+                .paths(PathSelectors.any())
+                .build()
+                .securitySchemes(securitySchemes())
+                .securityContexts(securityContexts());
     }
 
 }

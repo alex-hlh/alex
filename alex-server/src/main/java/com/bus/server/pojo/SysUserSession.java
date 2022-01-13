@@ -27,7 +27,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_user_session")
-@ApiModel(value="SysUserSession对象", description="用户在线 Session")
+@ApiModel(value = "SysUserSession对象", description = "用户在线 Session")
 public class SysUserSession implements Serializable {
 
     private static final long serialVersionUID = 1L;

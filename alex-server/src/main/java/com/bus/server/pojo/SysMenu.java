@@ -30,7 +30,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("sys_menu")
-@ApiModel(value="SysMenu对象", description="菜单权限表")
+@ApiModel(value = "SysMenu对象", description = "菜单权限表")
 public class SysMenu implements Serializable {
 
     private static final long serialVersionUID = 1L;
